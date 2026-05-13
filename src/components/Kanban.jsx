@@ -45,7 +45,7 @@ function Column({ title, status }) {
         }}>
             <h3 style={{ textAlign: 'center'}}>
                 {title}
-                ({filteredTasks.lenght})
+                ({filteredTasks.length})
             </h3>
             {filteredTasks.map(t => <Card key={t.id} task={t}/>)}
         </div>

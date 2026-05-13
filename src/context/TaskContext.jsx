@@ -16,19 +16,30 @@ export function TaskProvider({ children }) {
         const newTask = {
             id: Date.now(),
             title,
-            status: 'doing' // Inicia na coluna de não iniciado
+            status: 'todo' // Inicia na coluna de não iniciado
         }
         setTasks([...tasks, newTask])
     }
 
     const moveTask = (id) => {
         // movimentar uma tarefa
-        return []
+        /*
+            todo -> Não iniciado
+            doing -> Em andamento
+            done -> Concluído 
+        */
+        setTasks(prev => prev.map(task => {
+            if (task.id === id) {
+                if (task.status === "todo") return { ...task, status: "doing" }
+                if (task.status === "doing") return { ...task, status: "done" }
+            }
+            return task
+        }))
     }
 
     const deleteTask = (id) => {
         // excluir uma tarefa
-        return []
+        setTasks( prev => prev.filter(task => task.id !== id ))
     }
 
     return (
